@@ -2,7 +2,7 @@ import cv2
 import mediapipe as mp
 import pyfiglet as pyg  
 import time
-
+import json
 welcome=pyg.figlet_format("Welcome to the MediaPipe Camera")
 print(welcome)
 # import threading
@@ -93,11 +93,14 @@ while True:
                 # file=open("time.txt","w")
                 # file.write(str(handResults.right_hand_landmarks[0].landmark[0]))
                 # file.close()
-                print(tempData)
                 try:
-                    if dict(handResults.right_hand_landmarks)["landmark"]['x'] < 0.3:
-                        print("student 1 Abnormal")
-                except:
+                    handPath=json.dumps(str(handResults.right_hand_landmarks.landmark[0]))[6:14]
+                    print(handPath)
+                    if int(handPath) <3:
+                        print("Abnormal student1")
+                        tempData="Abnormal"
+                except Exception as e:
+                    print(e)
                     # print("student 1 Abnormal")
                     pass
     else:
