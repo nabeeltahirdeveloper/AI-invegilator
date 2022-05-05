@@ -88,7 +88,7 @@ def record():
         # little endian, signed short
         snd_data = array('h', stream.read(CHUNK_SIZE))
         if byteorder == 'big':
-            print("big")
+            # print("big")
             snd_data.byteswap()
         if snd_started:
             r.extend(snd_data)
@@ -96,7 +96,7 @@ def record():
         silent = is_silent(snd_data)
 
         if silent and snd_started:
-            print(".")
+            # print(".")
             num_silent += 1
         elif not silent and not snd_started:
             print("Recording")
@@ -152,7 +152,7 @@ def audioMatch(file1, file2):
 
 
     Ratio = lev.ratio(b.lower(), a.lower())
-    print(Ratio)
+    # print(Ratio)
 
 
     if Ratio>=0.8:
@@ -163,12 +163,12 @@ def audioTest(data):
     print("start audioTest")
     for root, dirs, files in os.walk("Dataset\my Data"):
         for filename in files:
-            print(filename)
+            # print(filename)
             if audioMatch(filename,data):
                 if isMatched!=True:
                     break
     if isMatched:
-        print("matched")
+        print("normal")
     else:
         print("Cheating Detected")
 
